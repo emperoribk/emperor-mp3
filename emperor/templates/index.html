@@ -15,17 +15,17 @@
     {% load static %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="/">Emperor mp3</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/song">Songs</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,7 +54,7 @@
             <img src="{% static 'img/01.jpg' %}" class="d-block w-100" width="100%" height="500px" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{% static 'img/02.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
+            <img src="{% static 'img/04.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
           </div>
           <div class="carousel-item">
             <img src="{% static 'img/01.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
@@ -78,30 +78,17 @@
       <!--CARD-->
       <h2 style="padding-top: 2%; padding-left: 7%;">Trending Songs</h2>
       <div class="row" style="padding-top: 2%; padding-left: 7%;">
+        {% for i in song %}
       <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
+        <img src="/media/{{i.image}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
+          <h5 class="card-title">{{ i.name }}</h5>
+          <p class="card-text">{{ i.artiste }}</p>
+          <p class="card-text">{{ i.tag }}</p>
+          <a href="/song/{{i.song_id}}" class="btn btn-outline-danger">Play</a>
         </div>
       </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <hr>
