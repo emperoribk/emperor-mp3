@@ -15,3 +15,9 @@ def song(request):
 def songpost(request, id):
     song = Song.objects.filter(song_id=id).first()
     return render(request,'songpost.html', {'song':song})
+
+def login(request):
+    return render(request, 'login.html')
+
+def signup(request):
+    return render(request, 'signup.html')
