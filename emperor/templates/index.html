@@ -40,10 +40,17 @@
               </li>
               
             </ul>
-            <form class="d-flex">
+            <form style="padding-right: 2%;" class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            
+              {% if user.is_authenticated %}
+                <div class="form-inline my-2 my-lg-0">
+                <h5 style="color:black; font-family:cursive;">Hi {{request.user}}</h5>
+                </div>
+            {% endif %}
+            
           </div>
         </div>
       </nav>
