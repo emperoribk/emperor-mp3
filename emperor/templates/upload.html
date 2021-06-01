@@ -1,0 +1,26 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+{% load static %}
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+{% load crispy_forms_tags %}
+<body>
+   <div class="container">
+      <div class="col-md-6 mx-auto text-center">
+         <div class="header-title">
+            <h1 class="wv-heading--title">
+               Upload Your Music
+            </h1> 
+         </div>
+      </div>
+      {% block container%}
+      <div  style ="width:500px; margin: 0 auto;"class="panel panel-default">
+         <div class="panel-body">
+            {% crispy form %}
+            {% csrf_token %}
+         </div>
+      </div>
+      {% endblock %}

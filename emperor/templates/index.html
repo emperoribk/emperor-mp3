@@ -4,15 +4,57 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    {% load static %}
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
     <title>Emperor mp3</title>
 
   </head>
+  <style>
+.trending{
+      text-decoration:none;
+      color: black;
+      font-size: 35px;
+    }
+.trending a:hover{
+    color: black;
+}
+
+
+.hiphop{
+    text-decoration: none;
+    color: black;
+    font-size: 35px;
+}
+.hiphop a:hover{
+    color: black;
+}
+
+
+.gospel{
+    text-decoration: none;
+    color: black;
+    font-size: 35px;
+}
+.gospel a:hover{
+    color: black;
+}
+
+.afro{
+    text-decoration: none;
+    color: black;
+    font-size: 35px;
+    font-family: 'Brush Script MT', cursive;
+}
+.afro a:hover{
+    color: black;
+}
+
+  </style>
   <body>
-    {% load static %}
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Emperor mp3</a>
@@ -27,29 +69,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="/song">Songs</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
+              
               
             </ul>
-            <form style="padding-right: 2%;" class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+            <form style="padding-right: 2%;" method="GET" action="/search" class="d-flex">
+              <input name="query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-dark" type="submit">Search</button>
             </form>
             
-              {% if user.is_authenticated %}
-                <div class="form-inline my-2 my-lg-0">
-                <h5 style="color:black; font-family:cursive;">Hi {{request.user}}</h5>
-                </div>
-            {% endif %}
+              
             
           </div>
         </div>
@@ -58,16 +86,16 @@
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{% static 'img/01.jpg' %}" class="d-block w-100" width="100%" height="500px" alt="...">
+            <img src="{% static 'img/5.jpg' %}" class="d-block w-100" width="100%" height="500px" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{% static 'img/04.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
+            <img src="{% static 'img/5.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{% static 'img/01.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
+            <img src="{% static 'img/5.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{% static 'img/04.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
+            <img src="{% static 'img/5.jpg' %}" class="d-block w-100" width="100%" height="500px;" alt="...">
           </div>
           <div class="carousel-item">
             <img src="{% static 'img/5.jpg' %}" class="d-block w-100" width="300px" height="500px;" alt="...">
@@ -83,80 +111,52 @@
         </button>
       </div>
       <!--CARD-->
-      <h2 style="padding-top: 2%; padding-left: 7%;">Trending Songs</h2>
-      <div class="row" style="padding-top: 2%; padding-left: 7%;">
-        {% for i in song %}
-      <div class="card" style="width: 18rem;">
-        <img src="/media/{{i.image}}"class="card-img-top" alt="..." height="200px" width="300px">
-        <div class="card-body">
-          <h5 class="card-title">{{ i.name }}</h5>
-          <p class="card-text">{{ i.artiste }}</p>
-          <p class="card-text">{{ i.tag }}</p>
-          <a href="/song/{{i.song_id}}" class="btn btn-outline-danger">Play</a>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
 
+    <a { color: #FF0000; } href="/afro" class="afro" style="padding-top: 2%; font-family:'Brush Script MT', cursive; padding-left: 7%;">AFRO BEATS</a>
+    <div class="row" style="padding-top: 0%; padding-left: 7%;">
+      {% for i in songs %}
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{i.image}}"class="card-img-top" alt="..." height="200px" width="200px">
+      <div class="card-body">
+        <h5  style = "font-family:'Brush Script MT', cursive;" class="card-title">{{ i.name }}</h5>
+        <p   style = "font-family:'Brush Script MT', cursive;"class="card-text">{{ i.artiste }}</p>
+        <p  style = "font-family:'Brush Script MT', cursive;" class="card-text">{{ i.tag }}</p>
+        <a href="/song/{{i.song_id}}" class="btn btn-dark">Play</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
     <hr>
 
-    <h2 style="padding-top: 2%; padding-left: 7%;">Favourite playlist</h2>
-      <div class="row" style="padding-top: 2%; padding-left: 7%;">
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
+    <a { color: #FF0000; } href="/gospel" class="gospel" style="padding-top: 2%; font-family:'Brush Script MT', cursive; padding-left: 7%;">GOSPEL</a>
+    <div class="row" style="padding-top: 0%; padding-left: 7%;">
+      {% for i in gospel %}
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{i.image}}"class="card-img-top" alt="..." height="200px" width="200px">
+      <div class="card-body">
+        <h5  style = "font-family:'Brush Script MT', cursive;" class="card-title">{{ i.name }}</h5>
+        <p  style = "font-family:'Brush Script MT', cursive;"class="card-text">{{ i.artiste }}</p>
+        <p  style = "font-family:'Brush Script MT', cursive;"class="card-text">{{ i.tag }}</p>
+        <a href="/song/{{i.song_id}}" class="btn btn-dark">Play</a>
       </div>
     </div>
+    {% endfor %}
+  </div>
 
-    <hr>
-
-    <h2 style="padding-top: 2%; padding-left: 7%;">Grooves</h2>
-      <div class="row" style="padding-top: 2%; padding-left: 7%;">
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="{% static 'img/12.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Play</a>
-        </div>
+  <a { color: #FF0000; } href="/hiphop" class="hiphop" style="padding-top: 0%; font-family:'Brush Script MT', cursive; padding-left: 7%;">HIP HOP</a>
+    <div class="row" style="padding-top: 2%; font-size: 18px; padding-left: 7%;">
+      {% for i in hiphop %}
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{i.image}}"class="card-img-top" alt="..." height="200px" width="200px">
+      <div class="card-body">
+        <h5  style = "font-family:'Brush Script MT', cursive;" class="card-title">{{ i.name }}</h5>
+        <p  style = "font-family:'Brush Script MT', cursive;" class="card-text">{{ i.artiste }}</p>
+        <p  style = "font-family:'Brush Script MT', cursive;" class="card-text">{{ i.tag }}</p>
+        <a href="/song/{{i.song_id}}" class="btn btn-dark">Play</a>
       </div>
     </div>
+    {% endfor %}
+  </div>
       <!--END CARD-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
